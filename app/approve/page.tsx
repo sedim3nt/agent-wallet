@@ -1,6 +1,9 @@
 "use client";
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { PENDING_APPROVALS, AGENTS, formatUSDC, timeAgo } from "@/lib/mockData";
+
+const ApproveChainNotice = dynamic(() => import("@/components/ApproveChainNotice"), { ssr: false });
 
 type Decision = "approved" | "denied";
 
@@ -38,6 +41,8 @@ export default function ApprovePage() {
           </div>
         )}
       </div>
+
+      <ApproveChainNotice />
 
       {pendingCount === 0 && (
         <div style={{

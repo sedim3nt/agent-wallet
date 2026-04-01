@@ -33,6 +33,11 @@ export default function RulesPage() {
   };
 
   const handleSave = () => {
+    // Persist rules to localStorage (on-chain enforcement is v2)
+    const rules = { dailyCap, perTxLimit, timeEnabled, startHour, endHour, activeDays, recipients };
+    if (typeof window !== "undefined") {
+      localStorage.setItem("agentWalletRules", JSON.stringify(rules));
+    }
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   };
@@ -74,8 +79,22 @@ export default function RulesPage() {
           Spending Rules
         </h1>
         <p style={{ fontSize: "14px", color: "rgba(238,238,238,0.45)" }}>
-          Configure fleet-wide spending rules · enforced on-chain via SpendingGuard.sol
+          Configure fleet-wide spending rules
         </p>
+        <div style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "6px",
+          marginTop: "8px",
+          padding: "5px 10px",
+          background: "rgba(94,106,210,0.08)",
+          border: "1px solid rgba(94,106,210,0.2)",
+          borderRadius: "6px",
+          fontSize: "12px",
+          color: "#8B95E9",
+        }}>
+          ⛓️ Rules will be enforced on-chain via SpendingGuard.sol in v2 · Currently stored in localStorage
+        </div>
       </div>
 
       {/* Daily Cap */}

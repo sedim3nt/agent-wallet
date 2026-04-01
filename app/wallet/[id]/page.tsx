@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AGENTS, TRANSACTIONS, SPENDING_RULES, formatUSDC, timeAgo } from "@/lib/mockData";
 import StatusBadge from "@/components/StatusBadge";
 import SpendBar from "@/components/SpendBar";
+import WalletRealDataClient from "@/components/WalletRealDataClient";
 
 export default async function WalletPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -246,6 +247,9 @@ export default async function WalletPage({ params }: { params: Promise<{ id: str
               Edit rules →
             </Link>
           </div>
+
+          {/* Real Chain Data (connected wallet) */}
+          <WalletRealDataClient />
 
           {/* Identity Attestations */}
           <div style={{

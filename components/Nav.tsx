@@ -1,6 +1,13 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
+
+// Dynamically import wallet components to avoid SSR issues
+const ConnectButton = dynamic(
+  () => import("@rainbow-me/rainbowkit").then((m) => m.ConnectButton),
+  { ssr: false }
+);
 
 const navLinks = [
   { href: "/", label: "Fleet" },
@@ -98,18 +105,11 @@ export default function Nav() {
           <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#3DD68C", display: "inline-block" }} />
           Base Mainnet
         </div>
-        <div style={{
-          padding: "6px 12px",
-          background: "rgba(255,255,255,0.04)",
-          border: "1px solid rgba(255,255,255,0.1)",
-          borderRadius: "6px",
-          fontSize: "13px",
-          color: "rgba(238,238,238,0.65)",
-          fontFamily: "var(--font-mono)",
-          cursor: "pointer",
-        }}>
-          0x4a8b...f2c1
-        </div>
+        <ConnectButton
+          accountStatus="avatar"
+          chainStatus="none"
+          showBalance={false}
+        />
       </div>
     </nav>
   );

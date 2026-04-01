@@ -1,8 +1,14 @@
 "use client";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { AGENTS, TRANSACTIONS, formatUSDC } from "@/lib/mockData";
 import StatusBadge from "@/components/StatusBadge";
 import SpendBar from "@/components/SpendBar";
+
+const SmartWalletSection = dynamic(
+  () => import("@/components/SmartWalletSection"),
+  { ssr: false, loading: () => null }
+);
 
 export default function FleetPage() {
   const totalBalance = AGENTS.reduce((sum, a) => sum + a.balance, 0);
@@ -30,6 +36,9 @@ export default function FleetPage() {
           Managing {AGENTS.length} agent wallets · Base Mainnet · USDC
         </p>
       </div>
+
+      {/* Smart Wallet Section */}
+      <SmartWalletSection />
 
       {/* Stats Bar */}
       <div style={{
