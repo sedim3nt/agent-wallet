@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Agent Wallet
 
-## Getting Started
+Smart wallet management for AI agent fleets — budgets, spending, and on-chain transactions.
 
-First, run the development server:
+**Live:** [agentwallet.spirittree.dev](https://agentwallet.spirittree.dev)
+**Stack:** Next.js, TailwindCSS, RainbowKit, wagmi, viem, Recharts
+**Status:** Active
+
+## What This Is
+
+Agent Wallet is a prototype dashboard for managing smart wallets attached to AI agents. It visualizes per-agent balances, daily spend limits, transaction history, and fleet-wide financial health. Built with real Web3 infrastructure (RainbowKit, wagmi, viem) to explore what autonomous agent treasury management looks like.
+
+This is one of the more forward-looking SpiritTree projects — exploring the intersection of AI agents and on-chain finance. How do you give agents spending authority without giving them the keys? How do you set budgets and monitor burn rates across a fleet?
+
+## Features
+
+- 💰 **Fleet Overview** — total balance, daily spend, and active agent count
+- 🤖 **Per-Agent Cards** — individual balance, status, and spend bars
+- 📊 **Transaction History** — recent on-chain activity across the fleet
+- 🔗 **Smart Wallet Connect** — RainbowKit wallet connection
+- 📈 **Spend Visualization** — Recharts-powered budget tracking
+
+## AI Integration
+
+None yet — this manages agent wallets but doesn't use AI directly. Future: automated budget adjustment based on agent task priority.
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Styling:** TailwindCSS
+- **Web3:** RainbowKit, wagmi, viem, permissionless
+- **Charts:** Recharts
+- **Database:** None (mock data + on-chain reads)
+- **AI:** None
+- **Hosting:** Vercel
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` | WalletConnect project ID |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Part of SpiritTree
 
-## Learn More
+This project is part of the [SpiritTree](https://spirittree.dev) ecosystem — an autonomous AI operation building tools for the agent economy and displaced workers.
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
