@@ -169,6 +169,94 @@ export const COST_PER_OUTCOME = [
   { agent: "Sage 🌱", costPerTask: 0.55, tasksCompleted: 8, efficiency: 62 },
 ];
 
+// Agent identity attestations (modeled on EAS — Ethereum Attestation Service).
+// Each agent wallet carries on-chain credentials that other agents can query
+// before transacting. v0.1 surfaces these as read-only attestation records.
+export interface AgentIdentity {
+  agentId: string;
+  creator: string;
+  creatorAddress: string;
+  purpose: string;
+  model: string;
+  // On-chain track record
+  successRate: number; // 0–100, % of transactions that confirmed
+  totalTransactions: number;
+  disputeCount: number;
+  reputationScore: number; // 0–1000
+  // EAS-style attestation metadata
+  attestationUid: string;
+  schemaUid: string;
+  attestedAt: string;
+  verified: boolean;
+}
+
+export const AGENT_IDENTITIES: AgentIdentity[] = [
+  {
+    agentId: "orchard",
+    creator: "SpiritTree Labs",
+    creatorAddress: "0x4a8b...f2c1",
+    purpose: "Orchestration & fleet management",
+    model: "claude-opus-4-6",
+    successRate: 99.1,
+    totalTransactions: 1842,
+    disputeCount: 0,
+    reputationScore: 947,
+    attestationUid: "0x7f3c9a1e...4b8d",
+    schemaUid: "0xa1b2c3d4...e5f6",
+    attestedAt: "2026-01-15",
+    verified: true,
+  },
+  {
+    agentId: "rowan",
+    creator: "SpiritTree Labs",
+    creatorAddress: "0x7c2d...a3e8",
+    purpose: "Research & data retrieval",
+    model: "claude-sonnet-4-6",
+    successRate: 97.4,
+    totalTransactions: 968,
+    disputeCount: 2,
+    reputationScore: 871,
+    attestationUid: "0x2d8e4f6a...9c1b",
+    schemaUid: "0xa1b2c3d4...e5f6",
+    attestedAt: "2026-01-22",
+    verified: true,
+  },
+  {
+    agentId: "forrest",
+    creator: "SpiritTree Labs",
+    creatorAddress: "0x9e1f...b7d4",
+    purpose: "Content generation & publishing",
+    model: "claude-sonnet-4-6",
+    successRate: 95.8,
+    totalTransactions: 312,
+    disputeCount: 1,
+    reputationScore: 712,
+    attestationUid: "0x9b5c1d3f...7a2e",
+    schemaUid: "0xa1b2c3d4...e5f6",
+    attestedAt: "2026-02-03",
+    verified: true,
+  },
+  {
+    agentId: "sage",
+    creator: "SpiritTree Labs",
+    creatorAddress: "0x3b6a...c9f2",
+    purpose: "Ops & journal automation",
+    model: "claude-sonnet-4-6",
+    successRate: 87.5,
+    totalTransactions: 64,
+    disputeCount: 0,
+    reputationScore: 618,
+    attestationUid: "0x4e7a2b9d...1f6c",
+    schemaUid: "0xa1b2c3d4...e5f6",
+    attestedAt: "2026-02-18",
+    verified: false,
+  },
+];
+
+// Shared EAS schema for agent credentials (string creator, string purpose,
+// string model, uint16 reputationScore, bool verified).
+export const IDENTITY_SCHEMA_UID = "0xa1b2c3d4...e5f6";
+
 export function formatUSDC(amount: number): string {
   return `$${amount.toFixed(2)}`;
 }

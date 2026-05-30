@@ -4,7 +4,9 @@ import { cookieStorage, createStorage } from "wagmi";
 
 export const wagmiConfig = getDefaultConfig({
   appName: "AgentWallet",
-  projectId: "agentwalletdemo",
+  // WalletConnect Cloud project ID. Set NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID
+  // in the environment; falls back to a demo id for local/preview builds.
+  projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || "agentwalletdemo",
   chains: [base],
   ssr: true,
   storage: createStorage({
